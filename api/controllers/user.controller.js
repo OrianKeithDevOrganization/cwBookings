@@ -1,7 +1,7 @@
-const User = require('../models/UserModel')
-import errorHandler from "../helpers/dbErrorHandler.";
-
+const User = require('../models/User') 
+const errorHandler = require('../helpers/dbErrorHandler')
 const bcrypt = require('bcryptjs');
+
 const bcryptSalt = bcrypt.genSaltSync(10);
 
 const create = async (req,res) => {

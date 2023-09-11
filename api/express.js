@@ -1,11 +1,8 @@
+const userRoutes = require('./routes/user.routes');
+const authRoutes = require('./routes/auth.routes');
 const express = require('express');
 const cors = require('cors')
 
-
-// const bcrypt = require('bcryptjs');
-
-// // bcrypt salt
-// const bcryptSalt = bcrypt.genSaltSync(12);
 
 const app = express();
 
@@ -24,3 +21,6 @@ app.use('/', authRoutes)
 app.get('/test', (req,res) => {
     res.json('test ok');
 }) 
+
+
+module.exports = app 

@@ -1,5 +1,5 @@
 
-import authCtrl from '../controllers/auth.controller';
+const authCtrl = require('../controllers/auth.controller')
 
 const express = require('express');
 const router = express.Router();
@@ -7,5 +7,4 @@ const router = express.Router();
 
 router.post("/login",authCtrl.login);
 
-
-export default router;
+module.exports = router;

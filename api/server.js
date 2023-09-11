@@ -1,26 +1,27 @@
-import config from "./config/config";
-import app from "./express";
+// import config from "./config/config";
 
+const app = require('./express')
 const mongoose = require('mongoose');
 
 
+app.listen(4000);
 
-// setting up Database connection
+// // setting up Database connection
 
-mongoose.Promise = global.Promise
-mongoose.connect(config.mongoUri, {
-    useNewUrlParser:true,
-    useUnifiedTopology: true,
-})
+// mongoose.Promise = global.Promise
+// mongoose.connect(config.mongoUri, {
+//     useNewUrlParser:true,
+//     useUnifiedTopology: true,
+// })
 
-mongoose.connection.on('error', () => {
-    throw new Error(`Unable to connect to the database: ${config.mongoUri}`)
-}); 
+// mongoose.connection.on('error', () => {
+//     throw new Error(`Unable to connect to the database: ${config.mongoUri}`)
+// }); 
 
 
-app.listen(config.port, (err) => {
-    if (err) {
-        console.log(err)
-    }
-    console.info('Server started on port %s .',config.port)
-});
+// app.listen(config.port, (err) => {
+//     if (err) {
+//         console.log(err)
+//     }
+//     console.info('Server started on port %s .',config.port)
+// });
