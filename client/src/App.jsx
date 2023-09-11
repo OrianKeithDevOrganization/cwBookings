@@ -4,6 +4,9 @@ import IndexPage from './Components/Pages/IndexPage';
 import Login from './Components/Pages/Login';
 import Layout from './Components/layout/Layout'
 import Register from './Components/Pages/Register';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'http://localhost:4000';
 
 function App() {
 
