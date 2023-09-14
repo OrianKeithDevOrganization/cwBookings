@@ -19,7 +19,7 @@ const login = async(req,res) => {
 
             jwt.sign({email:user.email,id:user._id},config.jwtSecret, {}, (err,token) => {
                 if (err) throw err;
-                res.cookie('token',token).json('pass ok')
+                res.cookie('token',token).json(user) //returning user document here
             });
 
         } else {
@@ -33,5 +33,28 @@ const login = async(req,res) => {
 
 
 
-module.exports = { login }
+const profile = (req,res) => {
+    const {token} = req.cookies;
+
+    //check if we have token
+
+    if (token) {
+        // let's try to decrypt the token with signature
+        // arrow function is a callback with parameter error and result 
+        jwt.verify(token, config.jwtSecret, {}, async (err, userData) => {
+            if (err) throw err;
+                //grab id from cookies
+                const {name,email,_id} = await User.findById(userData.id) 
+
+            res.json({name,email,_id});
+        })
+
+    } else {
+        res.json(null);
+    }
+
+}
+
+
+module.exports = { login , profile }
 // export default { login };

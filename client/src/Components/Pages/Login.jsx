@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
+import { UserContext } from "../../SupportUtilities/UserContext";
 
 const Login = () => {
 
@@ -8,10 +9,15 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
 
+    const {setUser} = useContext(UserContext)
+
+
     async function handleLoginSubmit(event) {
         event.preventDefault();
         try {
-            axios.post('/login',{email,password})
+            const {data} = axios.post('/login',{email,password})
+            setUser(data);
+            
             // alert('Login successful')
             setRedirect(true);  // redirect if login is successfull.
 

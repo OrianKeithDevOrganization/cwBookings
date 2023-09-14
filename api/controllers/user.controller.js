@@ -1,6 +1,8 @@
 const User = require('../models/User') 
 const errorHandler = require('../helpers/dbErrorHandler')
 const bcrypt = require('bcryptjs');
+const config = require("../config/config");
+
 
 const bcryptSalt = bcrypt.genSaltSync(10);
 
@@ -24,5 +26,6 @@ const create = async (req,res) => {
     }
 
 } 
+
 
 module.exports = { create }
