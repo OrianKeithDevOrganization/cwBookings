@@ -57,4 +57,3 @@ const profile = (req,res) => {
 
 
 module.exports = { login , profile }
-// export default { login };
