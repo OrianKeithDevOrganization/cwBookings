@@ -28,4 +28,9 @@ const create = async (req,res) => {
 } 
 
 
-module.exports = { create }
+const logout = (req,res) => {
+    res.cookie('token','').json(true);
+}
+
+
+module.exports = { create , logout}
