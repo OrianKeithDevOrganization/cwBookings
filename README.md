@@ -4,8 +4,8 @@ In this project, I develop a rental booking Frontend. It is still a work in prog
 
 
 ## Todo
--[x] Login Interface
--[ ] Places section. 
+- [x] Login Interface
+- [ ] Places section. 
 
 
 
