@@ -1,4 +1,4 @@
-
+const config = require("../config/config");
 const download = require('image-downloader');
 
 
@@ -8,7 +8,7 @@ const upload = async (req,res) => {
     const newName = 'photo' + Date.now() + '.jpg'
     await download.image({
         url: link,
-        dest: 'uploads' + newName,
+        dest: config.path + 'api/uploads/' + newName,
     });
 
     res.json(newName);
