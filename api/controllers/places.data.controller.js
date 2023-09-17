@@ -1,6 +1,9 @@
 const config = require("../config/config");
 const download = require('image-downloader');
 const fs = require('fs');
+const Place = require('../models/Places');
+const jwt = require('jsonwebtoken');
+
 
 const uploadByLink = async (req,res) => {
 
@@ -32,4 +35,37 @@ const upload = async (req, res) => {
     res.json(uploadedFiles); 
 }
 
-module.exports = { upload, uploadByLink }
+
+const storeData = (req, res) => {
+
+    const {token} = req.cookies;
+    const {title, address, addedPhotos, description, perks, extraInfo, checkIn, checkOut, maxGuests} = req.body;
+    
+
+    jwt.verify(token, config.jwtSecret, {}, async (err, userData) => {
+        
+    if (err) throw err;
+
+    const placeDoc = await Place.create({
+        owner:userData.id,
+        title,
+        address, 
+        addedPhotos, 
+        description, 
+        perks, 
+        extraInfo, 
+        checkIn,
+        checkOut, 
+        maxGuests,
+    })
+
+    })
+
+    
+
+}
+
+
+
+
+module.exports = { upload, uploadByLink , storeData}
