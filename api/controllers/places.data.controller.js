@@ -19,8 +19,8 @@ const uploadByLink = async (req,res) => {
 
 
 
-const upload = async (req, res) => {
-    const uploadedFiles = [];
+const upload = (req, res) => {
+    let uploadedFiles = [];
 
     for (let i=0; i<req.files.length; i++) {
         const {path, originalname} = req.files[i];
