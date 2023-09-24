@@ -44,20 +44,20 @@ const storeData = (req, res) => {
 
     jwt.verify(token, config.jwtSecret, {}, async (err, userData) => {
         
-    if (err) throw err;
+        if (err) throw err;
 
-    const placeDoc = await Place.create({
-        owner:userData.id,
-        title,
-        address, 
-        addedPhotos, 
-        description, 
-        perks, 
-        extraInfo, 
-        checkIn,
-        checkOut, 
-        maxGuests,
-    })
+        const placeDoc = await Place.create({
+            owner:userData.id,
+            title,
+            address, 
+            photos:addedPhotos, 
+            description, 
+            perks, 
+            extraInfo, 
+            checkIn,
+            checkOut, 
+            maxGuests,
+        })
 
     })
 
@@ -66,6 +66,22 @@ const storeData = (req, res) => {
 }
 
 
+const placesView = async (req, res) => {
+    const {token} = req.cookies;
+
+    jwt.verify(token, config.jwtSecret, {}, async (err, userData) => {
+        const {id} = userData;
+        res.json( await Place.find({owner:id}) );
+    })
 
 
-module.exports = { upload, uploadByLink , storeData}
+}
+
+const placesById = async (req, res) => {
+    const {id} = req.params;
+    res.json(await Place.findById(id));
+
+
+};
+
+module.exports = { upload, uploadByLink , storeData, placesView , placesById}

@@ -19,6 +19,7 @@ const Perks = ({selected, onChange}) => {
             <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                 <input 
                     type="checkbox"
+                    checked={selected.includes('wifi')}
                     name='wifi'
                     onChange={handleCheckBoxClick}
                 />
@@ -30,6 +31,7 @@ const Perks = ({selected, onChange}) => {
             <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                 <input 
                     type="checkbox"
+                    checked={selected.includes('parking')}
                     name='parking'
                     onChange={handleCheckBoxClick}
                 />
@@ -42,6 +44,7 @@ const Perks = ({selected, onChange}) => {
             <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                 <input 
                     type="checkbox"
+                    checked={selected.includes('TV')}
                     name='TV'
                     onChange={handleCheckBoxClick}
                 />
@@ -53,6 +56,7 @@ const Perks = ({selected, onChange}) => {
             <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                 <input 
                     type="checkbox"
+                    checked={selected.includes('pets')}
                     name='pets'
                     onChange={handleCheckBoxClick}
                 />
@@ -63,7 +67,8 @@ const Perks = ({selected, onChange}) => {
             </label>
             <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                 <input 
-                    type="checkbox" 
+                    type="checkbox"
+                    checked={selected.includes('entrace')} 
                     name='entrace'
                     onChange={handleCheckBoxClick}
                 />
@@ -75,6 +80,7 @@ const Perks = ({selected, onChange}) => {
             <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                 <input 
                     type="checkbox"
+                    checked={selected.includes('radio')}
                     name='radio'
                     onChange={handleCheckBoxClick}
 

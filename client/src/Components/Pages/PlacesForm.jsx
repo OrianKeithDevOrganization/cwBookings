@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Perks from "./perks";
 import PhotosUploader from "./PhotosUploader";
 import axios from "axios";
 import AccountPageNavigation from "./AccountPageNavigation";
-import { Navigate } from "react-router";
+import { Navigate, useParams } from "react-router";
 
 
 
 const PlacesForm = () => {
+
+    const {id} = useParams();
     
     const [title, setTitle] = useState('');
     const [address, setAddress] = useState('');
@@ -21,6 +23,23 @@ const PlacesForm = () => {
     const [redirect, setRedirect] = useState(false);
 
     
+    useEffect(() => {
+        if (!id) {
+            return ;
+        }
+        axios.get('/places/'+id).then(response => {
+            const {data} = response;
+            setTitle(data.title);
+            setAddress(data.address)
+            setAddedPhotos(data.photos);
+            setDescription(data.description);
+            setPerks(data.perks);
+            setExtraInfo(data.extraInfo);
+            setCheckIn(data.checkIn);
+            setCheckOut(data.checkOut);
+            setMaxGuests(data.maxGuests);
+        })
+    },[id]);
 
 
     function inputHeader(text) {
@@ -46,16 +65,25 @@ const PlacesForm = () => {
 
 
    
-    async function addNewPlace(event) {
+    async function savePlace(event) {
         event.preventDefault();
-        await axios.post('/places', {
+
+        const placeData = {
             title, address, addedPhotos, 
             description, perks, extraInfo, 
-            checkIn, checkOut, maxGuests}
-        )
+            checkIn, checkOut, maxGuests
+        }
 
-        setRedirect(true);
-
+        if (id) {
+            //it's an update place 
+            await axios.put('/places', { id, ...placeData });
+            setRedirect(true);
+        } else {
+            // if it's a new place 
+            await axios.post('/places', placeData);
+            setRedirect(true);
+        }
+       
     }
 
 
@@ -66,7 +94,7 @@ const PlacesForm = () => {
     return (
         <div>
             <AccountPageNavigation />
-            <form onSubmit={addNewPlace}>
+            <form onSubmit={savePlace}>
 
                 {preInput('Title','Title for place should be catchy and short') }
                 <input type="text" value={title} onChange={ ev => setTitle(ev.target.value)} placeholder="title for example: Speke Apartment" />
