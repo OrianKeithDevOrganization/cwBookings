@@ -39,7 +39,10 @@ const upload = (req, res) => {
 const storeData = (req, res) => {
 
     const {token} = req.cookies;
-    const {title, address, addedPhotos, description, perks, extraInfo, checkIn, checkOut, maxGuests} = req.body;
+    const {
+        title, address, addedPhotos, description, perks, 
+        extraInfo, checkIn, checkOut, maxGuests, price
+    } = req.body;
     
 
     jwt.verify(token, config.jwtSecret, {}, async (err, userData) => {
@@ -57,6 +60,7 @@ const storeData = (req, res) => {
             checkIn,
             checkOut, 
             maxGuests,
+            price
         })
 
     })
@@ -89,7 +93,7 @@ const updateExistingPlace = async(req,res) => {
     const {token} = req.cookies;
     const {
         id, title, address, addedPhotos, description, 
-        perks, extraInfo, checkIn, checkOut, maxGuests
+        perks, extraInfo, checkIn, checkOut, maxGuests,price
     } = req.body;
     
 
@@ -111,6 +115,7 @@ const updateExistingPlace = async(req,res) => {
                 checkIn,
                 checkOut, 
                 maxGuests,
+                price,
             })
             await placeDoc.save()
             res.json('ok')
