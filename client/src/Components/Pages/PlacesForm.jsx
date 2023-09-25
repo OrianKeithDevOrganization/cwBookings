@@ -40,6 +40,7 @@ const PlacesForm = () => {
             setCheckIn(data.checkIn);
             setCheckOut(data.checkOut);
             setMaxGuests(data.maxGuests);
+            setPrice(data.price);
         })
     },[id]);
 
@@ -134,7 +135,7 @@ const PlacesForm = () => {
                     </div>
                     <div>
                         <h3 className="mt-2 -mb-1">Price per night</h3>
-                        <input type="number" value={price} onChange={ev => setPrice(ev.target.value)} placeholder="$100" />
+                        <input type="number" value={price} onChange={ev => setPrice(ev.target.value)} placeholder="100" />
                     </div>
                 </div> 
                 <div>
