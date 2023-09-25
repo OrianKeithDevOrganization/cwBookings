@@ -11,6 +11,7 @@ router.post("/upload",photosMiddleware.array('photos', 100),propertyCtrl.upload)
 router.post("/places",propertyCtrl.storeData)
 router.get("/places",propertyCtrl.placesView)
 router.get("/places/:id", propertyCtrl.placesById)
+router.put("/places",propertyCtrl.updateExistingPlace)
 
 
 module.exports = router;

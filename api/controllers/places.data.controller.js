@@ -84,4 +84,41 @@ const placesById = async (req, res) => {
 
 };
 
-module.exports = { upload, uploadByLink , storeData, placesView , placesById}
+
+const updateExistingPlace = async(req,res) => {
+    const {token} = req.cookies;
+    const {
+        id, title, address, addedPhotos, description, 
+        perks, extraInfo, checkIn, checkOut, maxGuests
+    } = req.body;
+    
+
+
+    jwt.verify(token, config.jwtSecret, {}, async (err, userData) => {
+    
+        if (err) throw err;
+
+        const placeDoc = await Place.findById(id); //Fetch place doc after verification
+
+        if (userData.id === placeDoc.owner.toString()){
+            placeDoc.set({
+                title,
+                address, 
+                photos:addedPhotos, 
+                description, 
+                perks, 
+                extraInfo, 
+                checkIn,
+                checkOut, 
+                maxGuests,
+            })
+            await placeDoc.save()
+            res.json('ok')
+        }
+    })
+
+
+
+}
+
+module.exports = { upload, uploadByLink , storeData, placesView , placesById, updateExistingPlace }
