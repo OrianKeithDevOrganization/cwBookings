@@ -66,7 +66,7 @@ const storeData = (req, res) => {
 }
 
 
-const placesView = async (req, res) => {
+const userPlacesView = async (req, res) => {
     const {token} = req.cookies;
 
     jwt.verify(token, config.jwtSecret, {}, async (err, userData) => {
