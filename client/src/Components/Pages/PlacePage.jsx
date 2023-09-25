@@ -33,7 +33,7 @@ const PlacePage = () => {
                     <div>
                         <h2 className="text-3xl"> Photos of {place.title} </h2>
 
-                        <button className="fixed right-12 top-8 flex gap-1 py-2 px-4 rounded-2xl shadow shadow-black bg-white text-black"> 
+                        <button  onClick={() => setShowAllPhotos(false)} className="fixed right-12 top-8 flex gap-1 py-2 px-4 rounded-2xl shadow shadow-black bg-white text-black"> 
                             {/* close icon here */}
                             Close photos
                         </button>
@@ -54,10 +54,13 @@ const PlacePage = () => {
         <div className="mt-8 bg-gray-100 -mx-8 px-8 py-8">
 
             <h1 className="text-3xl">{place.title}</h1>
-            <a className="my-2 block font-semibold underline" target="blank" href={'https://maps.google.com/?q='+place.address}>{place.address}</a>
+            <a className="flex gap-1 my-3 block font-semibold underline" target="blank" href={'https://maps.google.com/?q='+place.address}>
+                {/* maps icon  */}
+                {place.address}
+            </a>
 
             <div className="relative">
-                <div className="grid gap-2 grid-cols-[2fr_1fr]">
+                <div className="grid gap-2 grid-cols-[2fr_1fr] rounded-3xl overflow-hidden">
 
                     <div>
                         {place.photos?.[0] && (
