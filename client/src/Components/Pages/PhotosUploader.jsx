@@ -51,6 +51,7 @@ const PhotosUploader = ({addedPhotos, onChange}) => {
         const addedPhotosWithoutSelected = addedPhotos.filter(photo => photo !==filename);
         const newAddedPhotos = [filename, ...addedPhotosWithoutSelected]
         onChange(newAddedPhotos)
+        // onChange([filename, ...addedPhotos.filter(photo => photo !== filename)]) // one line simplification
     }
 
     return (
