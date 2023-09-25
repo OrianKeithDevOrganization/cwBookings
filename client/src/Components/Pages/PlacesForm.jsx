@@ -20,6 +20,8 @@ const PlacesForm = () => {
     const [checkIn, setCheckIn] = useState('');
     const [checkOut, setCheckOut] = useState('');
     const [maxGuests, setMaxGuests] = useState(1); 
+    const [price, setPrice] = useState(100);
+
     const [redirect, setRedirect] = useState(false);
 
     
@@ -71,7 +73,7 @@ const PlacesForm = () => {
         const placeData = {
             title, address, addedPhotos, 
             description, perks, extraInfo, 
-            checkIn, checkOut, maxGuests
+            checkIn, checkOut, maxGuests,price
         }
 
         if (id) {
@@ -117,7 +119,7 @@ const PlacesForm = () => {
                 <textarea  value={extraInfo} onChange={ev => setExtraInfo(ev.target.value)}/>
 
                 {preInput('Check In & Out Time', 'Add check in and check out time')}
-                <div className="grid gap-2 sm:grid-col-3">
+                <div className="grid gap-2  grid-col-2 md:grid-cols-4">
                     <div>
                         <h3 className="mt-2 -mb-1">Check in time</h3>
                         <input type="text" value={checkIn} onChange={ev => setCheckIn(ev.target.value)} placeholder="14:00" />
@@ -129,6 +131,10 @@ const PlacesForm = () => {
                     <div>
                         <h3 className="mt-2 -mb-1">Max Number of guests</h3>
                         <input type="number" value={maxGuests} onChange={ev => setMaxGuests(ev.target.value)} placeholder="2" />
+                    </div>
+                    <div>
+                        <h3 className="mt-2 -mb-1">Price per night</h3>
+                        <input type="number" value={price} onChange={ev => setPrice(ev.target.value)} placeholder="$100" />
                     </div>
                 </div> 
                 <div>

@@ -117,8 +117,15 @@ const updateExistingPlace = async(req,res) => {
         }
     })
 
-
-
 }
 
-module.exports = { upload, uploadByLink , storeData, placesView , placesById, updateExistingPlace }
+
+
+const placesView = async(req,res) => {
+    res.json( await Place.find() );
+}
+
+
+
+
+module.exports = { upload, uploadByLink , storeData, placesView, userPlacesView, placesById, updateExistingPlace }
