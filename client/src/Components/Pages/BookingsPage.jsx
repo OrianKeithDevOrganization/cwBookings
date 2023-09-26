@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import AccountPageNavigation from "./AccountPageNavigation";
 import axios from 'axios';
+import PlaceImg from "./PlaceImg";
 
 const BookingsPage = () => {
 
@@ -19,6 +20,9 @@ const BookingsPage = () => {
             <div>
                 {bookings?.length > 0 && bookings.map(booking => (
                     <div key={booking._id}>
+                        <div>
+                            <PlaceImg place={booking.place}  />
+                        </div>
                         {booking.checkIn}
                     </div>
                 ))}
