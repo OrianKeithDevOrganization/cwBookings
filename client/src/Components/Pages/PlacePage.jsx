@@ -95,6 +95,38 @@ const PlacePage = () => {
                 <h2 className="font-semibold text-2xl ">Description</h2>
                 {place.description}
             </div>
+            <div className="grid grid-col-2">
+                <div>
+                    Check-in: {place.checkIn}<br />
+                    Check-out: {place.checkOut} < br />
+                    Max number of guests: {place.maxGuest} 
+                </div>
+                <div>
+                    <div className="bg-white shadow p-4 rounded-2xl">
+                        <div className="text-2xl text-center">
+                            Price: ${place.price} / per night
+                        </div>
+                        <div className="border rounded-2xl mt-4">
+                            <div className="flex">
+                                <div className="py-3 px-4">
+                                    <label>Check in:</label>
+                                    <input type="date" />
+                                </div>
+                                <div className="py-3 px-4 border-l">
+                                    <label>Check out:</label>
+                                    <input type="date" />
+                                </div>
+                            </div>
+                            <div className="py-3 px-4 border-t">
+                                <label>Number of guests:</label>
+                                <input type="number" />
+                            </div>
+                        </div>
+                       
+                        <button className="primary">Book this place</button>
+                    </div>
+                </div>
+            </div>
 
             
         </div>
