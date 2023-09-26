@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
+import PlaceBookingWidget from "./PlaceBookingWidget";
 
 
 
@@ -51,7 +52,7 @@ const PlacePage = () => {
 
 
     return (
-        <div className="mt-8 bg-gray-100 -mx-8 px-8 py-8">
+        <div className="mt-8 bg-gray-100 -mx-8 px-8 pt-8">
 
             <h1 className="text-3xl">{place.title}</h1>
             <a className="flex gap-1 my-3 block font-semibold underline" target="blank" href={'https://maps.google.com/?q='+place.address}>
@@ -91,43 +92,31 @@ const PlacePage = () => {
                 </button>
             </div> 
 
-            <div className="my-4">
-                <h2 className="font-semibold text-2xl ">Description</h2>
-                {place.description}
-            </div>
-            <div className="grid grid-col-2">
+            
+            <div className="mt-8 mb-8 gap-8 grid grid-cols-1 md:grid-cols-[2fr_1fr]"> 
                 <div>
+                    <div className="my-4">
+                        <h2 className="font-semibold text-2xl ">Description</h2>
+                        {place.description}
+                    </div>
                     Check-in: {place.checkIn}<br />
                     Check-out: {place.checkOut} < br />
                     Max number of guests: {place.maxGuest} 
                 </div>
                 <div>
-                    <div className="bg-white shadow p-4 rounded-2xl">
-                        <div className="text-2xl text-center">
-                            Price: ${place.price} / per night
-                        </div>
-                        <div className="border rounded-2xl mt-4">
-                            <div className="flex">
-                                <div className="py-3 px-4">
-                                    <label>Check in:</label>
-                                    <input type="date" />
-                                </div>
-                                <div className="py-3 px-4 border-l">
-                                    <label>Check out:</label>
-                                    <input type="date" />
-                                </div>
-                            </div>
-                            <div className="py-3 px-4 border-t">
-                                <label>Number of guests:</label>
-                                <input type="number" />
-                            </div>
-                        </div>
-                       
-                        <button className="primary">Book this place</button>
-                    </div>
+                   <PlaceBookingWidget place={place}/>
+                </div>
+            </div>
+            <div className="bg-white -mx-8 px-8 py-8 border-t ">
+                <div>
+                    <h2 className="font-semibold text-2xl">Extra info</h2>
+                </div>
+                <div className="mb-4 mt-2 text-sm text-gray-700 leading-5">
+                    {place.extraInfo}
                 </div>
             </div>
 
+           
             
         </div>
     );
