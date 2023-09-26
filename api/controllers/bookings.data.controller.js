@@ -9,10 +9,10 @@ const bookAPlace = (req,res) => {
 
     Booking.create({
         place,checkIn,checkOut,numberOfGuests, name, mobile, price,
-    }).then((err,doc) => {
-        if (err) throw err;
-
+    }).then((doc) => {
         res.json(doc);
+    }).catch((err) => {
+        throw err;
     });
 
 }

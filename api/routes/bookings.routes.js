@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 
-router.post("/booking",bookingCtrl.bookAPlace)
+router.post("/bookings",bookingCtrl.bookAPlace)
 
 
 module.exports = router;
