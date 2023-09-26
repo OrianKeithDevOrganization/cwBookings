@@ -46,8 +46,9 @@ const privateBookings = async(req,res) => {
     //sync it returns a promise use await&async
     const userData = await getUserDataFromRequest(req);
 
-    //get userId
-    res.json(await Booking.find({user:userData.id}));
+    //get userId and 
+    //populate the place data via modal and place
+    res.json(await Booking.find({user:userData.id}).populate('place'));
 
 }
 
