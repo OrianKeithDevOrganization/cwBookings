@@ -39,9 +39,15 @@ const PlacePage = () => {
                         <h2 className="font-semibold text-2xl ">Description</h2>
                         {place.description}
                     </div>
-                    Check-in: {place.checkIn}<br />
-                    Check-out: {place.checkOut} < br />
-                    Max number of guests: {place.maxGuest} 
+                    <div className="p-3 bg-primary text-white rounded-xl ml-3">
+                        <span className="font-semibold">Check-in :</span> <span className="text-xl">{place.checkIn}</span>
+                    </div>
+                    <div className="p-3 bg-white text-black rounded-xl mt-2 ml-6">
+                        <span className="font-semibold text-gray-800">Check-out : </span> <span className="text-xl">{place.checkOut}</span>
+                    </div>
+                    <div className="p-3 bg-teal-400 text-white rounded-xl mt-2 ml-12">
+                        <span className="font-semibold">Max number of guests : </span> <span className="text-xl">{place.maxGuests}</span>
+                    </div>
                 </div>
                 <div>
                    <PlaceBookingWidget place={place}/>
